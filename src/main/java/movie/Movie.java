@@ -1,18 +1,27 @@
 package movie;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.Year;
 
 /**
  * Created by jshedrof on 3/24/2017.
  */
+@Entity
 public class Movie {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String title;
     private int year;
     private int genre_id;
     
-    public Movie(long id, String title, int year, int genre_id) {
-        this.id = id;
+    protected Movie() {}
+    
+    public Movie(String title, int year, int genre_id) {
         this.title = title;
         this.year = year;
         this.genre_id = genre_id;
@@ -21,7 +30,7 @@ public class Movie {
     @Override
     public String toString() {
         return String.format(
-                "Movie[id=%d, title='%s', year='%y', genre_id='%g'",
+                "Movie[id=%d, title='%s', year='%d', genre_id='%d'",
                 id, title, year, genre_id
         );
     }
