@@ -30,7 +30,7 @@ public class Movie {
     @Override
     public String toString() {
         return String.format(
-                "Movie[id=%d, title='%s', year='%d', genre_id='%d'",
+                "Movie[id=%d, title='%s', year='%d', genre_id='%d']",
                 id, title, year, genre_id
         );
     }
