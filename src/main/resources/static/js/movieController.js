@@ -26,12 +26,13 @@ angular.module("root", [])
         // ];
         
         $scope.movies;
+        $scope.genreList;
         
         $scope.addItem = function(movie) {
             $scope.movies.push({
                 "title": movie.title,
                 "year":  movie.year,
-                "genre": movie.genre_id
+                "genre": movie.genre
             });
         };
         
@@ -44,7 +45,18 @@ angular.module("root", [])
                 .error(function (data, status, headers, config) {
                     alert("Could not get movies")
                 });
-        }
+        };
         
+        $scope.getGenres = function() {
+            $http.get('/genres')
+                .success(function (data, status, headers, config) {
+                    $scope.genreList = data._embedded.genres;
+                })
+                .error(function(data, status, headers, config) {
+                    alert("Could not load Genres");
+                });
+        };
+        
+        $scope.getGenres();
         $scope.getAllMovies();
     }]);

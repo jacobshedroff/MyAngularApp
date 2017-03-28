@@ -13,20 +13,6 @@
 <body>
     <div ng-controller="index">
         <label>Search: <input ng-model="searchText"></label>
-        <div calss="row">
-            <form >
-                <div class="col-md-3">
-                    Title: <input type="text" ng-model="movie.title">
-                </div>
-                <div class="col-md-3">
-                    Year: <input type="text" ng-model="movie.year">
-                </div>
-                <div class="col-md-3">
-                    Genre: <input type="text" ng-model="movie.genre">
-                </div>
-                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)">Add</button>
-            </form>
-        </div>
         <table class="table">
             <thead>
                 <tr>
@@ -38,9 +24,26 @@
             <tr ng-repeat="item in movies | filter:searchText">
                 <td>{{item.title}}</td>
                 <td>{{item.year}}</td>
-                <td>{{item.genreId}}</td>
+                <td>{{item.genre.name}}</td>
             </tr>
         </table>
+        <div class="row">
+            <form >
+                <div class="col-md-3">
+                    Title: <input type="text" ng-model="movie.title" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    Year: <input type="text" ng-model="movie.year" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    Genre:
+                    <select ng-options="item.name for item in genreList" ng-model="movie.genre" class="form-control">
+                        <option value="">-- Choose Genre --</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)" style="margin-bottom: 1.45em;">Add</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
