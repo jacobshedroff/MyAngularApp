@@ -17,11 +17,11 @@ public class Movie {
     private long id;
     private String title;
     private int year;
-    private int genre_id;
+    private String genre_id;
     
     protected Movie() {}
     
-    public Movie(String title, int year, int genre_id) {
+    public Movie(String title, int year, String genre_id) {
         this.title = title;
         this.year = year;
         this.genre_id = genre_id;
@@ -30,7 +30,7 @@ public class Movie {
     @Override
     public String toString() {
         return String.format(
-                "Movie[id=%d, title='%s', year='%d', genre_id='%d']",
+                "Movie[id=%d, title='%s', year='%d', genre_id='%s']",
                 id, title, year, genre_id
         );
     }
@@ -51,11 +51,11 @@ public class Movie {
         this.year = year;
     }
     
-    public int getGenreId() {
+    public String getGenreId() {
         return genre_id;
     }
     
-    public void setGenreId(int genre_id) {
+    public void setGenreId(String genre_id) {
         this.genre_id = genre_id;
     }
 }

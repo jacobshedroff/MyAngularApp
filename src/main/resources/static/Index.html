@@ -12,7 +12,7 @@
 </head>
 <body>
     <div ng-controller="index">
-        <label>Search: <input ng-model="searchText"></label>
+        <label>Search: <input ng-model="searchText" class="form-control"></label>
         <table class="table">
             <thead>
                 <tr>
@@ -27,6 +27,9 @@
                 <td>{{item.genreId}}</td>
             </tr>
         </table>
+        <br>
+        <hr>
+        <br>
         <div class="row">
             <form >
                 <div class="col-md-3">

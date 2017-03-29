@@ -7,47 +7,19 @@ angular.module("root", [])
         if($scope.store == null) {
         
         }
-        // $scope.movies = [
-        //     {
-        //         "title": "test1",
-        //         "year": "2010",
-        //         "genre": "Comedy"
-        //     },
-        //     {
-        //         "title": "test2",
-        //         "year": "2013",
-        //         "genre": "Drama"
-        //     },
-        //     {
-        //         "title": "test3",
-        //         "year": "2014",
-        //         "genre": "Action"
-        //     }
-        // ];
         
         $scope.movies;
         $scope.genreList;
         
         $scope.addItem = function(movie) {
-            // $scope.movies.push({
-            //     "title": movie.title,
-            //     "year":  movie.year,
-            //     "genre": movie.genre
-            // });
-    
             var data = JSON.stringify({
                 title : movie.title,
                 year : movie.year,
-                genreId : movie.genre.id
+                genreId : movie.genre.name
             });
             
             $http.post('/movies', data)
                 .success(function(data, status, headers, config) {
-                    // data = JSON.stringify({
-                    //     title : movie.title,
-                    //     year : movie.year,
-                    //     genre : movie.genre.name
-                    // });
                     $scope.getAllMovies();
                 })
                 .error(function(data, status, headers, config) {
