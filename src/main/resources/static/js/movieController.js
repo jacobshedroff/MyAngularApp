@@ -4,10 +4,6 @@
 angular.module("root", [])
     .controller("index", ["$scope", '$http', function($scope, $http) {
         
-        if($scope.store == null) {
-        
-        }
-        
         $scope.movies;
         $scope.genreList;
         
@@ -21,6 +17,7 @@ angular.module("root", [])
             $http.post('/movies', data)
                 .success(function(data, status, headers, config) {
                     $scope.getAllMovies();
+                    document.getElementById("newItem").reset();
                 })
                 .error(function(data, status, headers, config) {
                     alert("Could not post Movie : " + status);

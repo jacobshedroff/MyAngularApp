@@ -19,19 +19,21 @@
                     <th>Title</th>
                     <th>Year</th>
                     <th>Genre</th>
+                    <th></th>
                 </tr>
             </thead>
             <tr ng-repeat="item in movies | filter:searchText">
                 <td>{{item.title}}</td>
                 <td>{{item.year}}</td>
                 <td>{{item.genreId}}</td>
+                <td class="col-sm-1"><input type="button" value="edit" class="btn btn-primary"></td>
             </tr>
         </table>
         <br>
         <hr>
         <br>
         <div class="row">
-            <form >
+            <form name="newItem">
                 <div class="col-md-3">
                     Title: <input type="text" ng-model="movie.title" class="form-control">
                 </div>
