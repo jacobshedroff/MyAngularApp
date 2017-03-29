@@ -29,18 +29,36 @@ angular.module("root", [])
         $scope.genreList;
         
         $scope.addItem = function(movie) {
-            $scope.movies.push({
-                "title": movie.title,
-                "year":  movie.year,
-                "genre": movie.genre
+            // $scope.movies.push({
+            //     "title": movie.title,
+            //     "year":  movie.year,
+            //     "genre": movie.genre
+            // });
+    
+            var data = JSON.stringify({
+                title : movie.title,
+                year : movie.year,
+                genreId : movie.genre.id
             });
+            
+            $http.post('/movies', data)
+                .success(function(data, status, headers, config) {
+                    // data = JSON.stringify({
+                    //     title : movie.title,
+                    //     year : movie.year,
+                    //     genre : movie.genre.name
+                    // });
+                    $scope.getAllMovies();
+                })
+                .error(function(data, status, headers, config) {
+                    alert("Could not post Movie : " + status);
+                });
         };
         
         $scope.getAllMovies = function () {
             $http.get('/movies')
                 .success(function (data, status, headers, config) {
                     $scope.movies = data._embedded.movies;
-                    alert($scope.movies.toString())
                 })
                 .error(function (data, status, headers, config) {
                     alert("Could not get movies")

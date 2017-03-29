@@ -24,7 +24,7 @@
             <tr ng-repeat="item in movies | filter:searchText">
                 <td>{{item.title}}</td>
                 <td>{{item.year}}</td>
-                <td>{{item.genre.name}}</td>
+                <td>{{item.genreId}}</td>
             </tr>
         </table>
         <div class="row">
@@ -41,7 +41,7 @@
                         <option value="">-- Choose Genre --</option>
                     </select>
                 </div>
-                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)" style="margin-bottom: 1.45em;">Add</button>
+                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)" style="margin-top: 1.45em;">Add</button>
             </form>
         </div>
     </div>
