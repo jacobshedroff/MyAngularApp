@@ -21,7 +21,7 @@ public class Movie {
     
     protected Movie() {}
     
-    public Movie(Long id, String title, int year, String genre_id) {
+    public Movie(long id, String title, int year, String genre_id) {
         this.id = id;
         this.title = title;
         this.year = year;
@@ -36,7 +36,7 @@ public class Movie {
         );
     }
     
-    public Long getId() {
+    public long getId() {
         return id;
     }
     
