@@ -2,10 +2,11 @@
  * Created by jshedrof on 3/22/2017.
  */
 angular.module("root", [])
-    .controller("index", ["$scope", '$http', function($scope, $http) {
+    .controller("index", ["$scope", '$http', function($scope, $http, $route) {
         
         $scope.movies;
         $scope.genreList;
+        $scope.displayEditForm = false;
         
         $scope.addItem = function(movie) {
             movie.id = $scope.movies.length + 1;
@@ -20,11 +21,19 @@ angular.module("root", [])
                 .success(function(data, status, headers, config) {
                     //TODO - Figure out how to clear the form after submit. (setPristine not working)
                     $scope.getAllMovies();
+                    $scope.movie = {};
+                    document.forms["newItem"].clear();
+                    $route.reload();
                 })
                 .error(function(data, status, headers, config) {
                     alert("Could not post Movie : " + status);
                 });
         };
+        
+        $scope.editItem = function() {
+        	$scope.displayEditForm = true;
+        	
+        }
         
         $scope.updateMovie = function(movie) {
             var data = JSON.stringify({
