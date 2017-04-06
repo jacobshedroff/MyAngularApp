@@ -2,11 +2,11 @@
  * Created by jshedrof on 3/22/2017.
  */
 angular.module("root", [])
-    .controller("index", ["$scope", '$http', function($scope, $http, $route) {
+    .controller("index", ["$scope", '$http', function($scope, $http) {
         
         $scope.movies;
         $scope.genreList;
-        $scope.displayEditForm = false;
+        $scope.edit = false;
         
         $scope.addItem = function(movie) {
             movie.id = $scope.movies.length + 1;
@@ -30,10 +30,10 @@ angular.module("root", [])
                 });
         };
         
-        $scope.editItem = function() {
-        	$scope.displayEditForm = true;
-        	
-        }
+        $scope.editItem = function(movie) {
+        	$scope.edit = true;
+        	alert("You clicked!");
+        };
         
         $scope.updateMovie = function(movie) {
             var data = JSON.stringify({
@@ -57,7 +57,25 @@ angular.module("root", [])
                 });
         };
         
-        //TODO - Pre-populate genreList before calling the rest api (or just persist the data).
+        $scope.addGenre = function(genre) {
+        	genre.id = $scope.genreList.length + 1;
+        	var data = JSON.stringify({
+                id : genre.id,
+                name : genre.name
+        	});
+        	
+        	$http.post('/genres', data)
+        		.success(function(data, status, headers, config){
+        			$scope.getGenres();
+                    $scope.genre = {};
+                    document.forms["newGenre"].clear();
+                    $route.reload();
+        		})
+        		.error(function(data, status, headers, config){
+        			alert("Could not add Genre.");
+        		});
+        };
+        
         $scope.getGenres = function() {
             $http.get('/genres')
                 .success(function (data, status, headers, config) {

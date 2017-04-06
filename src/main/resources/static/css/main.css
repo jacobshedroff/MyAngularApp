@@ -7,3 +7,7 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+body{
+	margin:1em;
+}

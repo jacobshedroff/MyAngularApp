@@ -12,11 +12,15 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="js/movieController.js" type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-csp.css">
     <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
     <div ng-controller="index">
-        <label>Search: </label><input ng-model="searchText" class="form-control col-md-5">
+    	<div class="col-md-3">
+    		<label>Search: </label><input ng-model="searchText" class="form-control col-md-5">
+    	</div>
+        
         <table class="table">
             <thead>
                 <tr>
@@ -30,54 +34,67 @@
                 <td>{{item.title}}</td>
                 <td>{{item.year}}</td>
                 <td>{{item.genreId}}</td>
-                <td class="col-sm-1"><input type="button" value="edit" ng-click="editItem(); displayEditForm = true;" class="btn btn-primary"></td>
+                <td class="col-sm-1"><input type="button" value="edit" ng-click="edit = !edit; editItem(item);" class="btn btn-primary" ng-init="edit = false"></td>
             </tr>
         </table>
         <br>
         <hr>
         <br>
         <div class="row">
-            <form name="newItem" ng-show="!displayEditForm" ng-init="displayEditForm = false" 
-            onsubmit="document.newItem.title.value=''; document.newItem.year.value=''; document.newItem.genre.value=''; movie.title='';">
-                <div>
-                    <input type="hidden" ng-model="movie.id">
-                </div>
-                <div class="col-md-3">
-                    Title: <input type="text" ng-model="movie.title" class="form-control" name="title">
-                </div>
-                <div class="col-md-3">
-                    Year: <input type="text" ng-model="movie.year" class="form-control" name="year">
-                </div>
-                <div class="col-md-3">
-                    Genre:
-                    <select ng-options="item.name for item in genreList" ng-model="movie.genre" class="form-control" name="genre">
-                        <option value="">-- Choose Genre --</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)"
-                        style="margin-top: 1.45em;">Add</button>
-            </form>
-            <div ng-show="displayEditForm">THis is a test</div>
-            <form name="editItem" ng-show="displayEditForm">
-            	<label>Edit Movie:</label>
-                <div>
-                    <input type="hidden" ng-model="movie.id">
-                </div>
-                <div class="col-md-3">
-                    Title: <input type="text" ng-model="movie.title" class="form-control">
-                </div>
-                <div class="col-md-3">
-                    Year: <input type="text" ng-model="movie.year" class="form-control">
-                </div>
-                <div class="col-md-3">
-                    Genre:
-                    <select ng-options="item.name for item in genreList" ng-model="movie.genre" class="form-control">
-                        <option value="">-- Choose Genre --</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)"
-                        style="margin-top: 1.45em;">Update</button>
-            </form>
+        	<div ng-show="!edit">
+        		<h4>Add Movie</h4>
+        		<form name="newItem">
+	                <div>
+	                    <input type="hidden" ng-model="movie.id">
+	                </div>
+	                <div class="col-md-3">
+	                    Title: <input type="text" ng-model="movie.title" class="form-control" name="title">
+	                </div>
+	                <div class="col-md-3">
+	                    Year: <input type="text" ng-model="movie.year" class="form-control" name="year">
+	                </div>
+	                <div class="col-md-3">
+	                    Genre:
+	                    <select ng-options="item.name for item in genreList" ng-model="movie.genre" class="form-control" name="genre">
+	                        <option value="">-- Choose Genre --</option>
+	                    </select>
+	                </div>
+	                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)"
+	                        style="margin-top: 1.45em;">Add</button>
+	            </form>
+        	</div>
+            
+            <div ng-show="edit">
+	            <form name="editItem">
+	            	<h4 style="margin:1em;">Edit Movie:</h4>
+	                <div>
+	                    <input type="hidden" ng-model="movie.id">
+	                </div>
+	                <div class="col-md-3">
+	                    Title: <input type="text" ng-model="movie.title" class="form-control">
+	                </div>
+	                <div class="col-md-3">
+	                    Year: <input type="text" ng-model="movie.year" class="form-control">
+	                </div>
+	                <div class="col-md-3">
+	                    Genre:
+	                    <select ng-options="item.name for item in genreList" ng-model="movie.genre" class="form-control">
+	                        <option value="">-- Choose Genre --</option>
+	                    </select>
+	                </div>
+	                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)"
+	                        style="margin-top: 1.45em;">Update</button>
+	            </form>   
+            </div>
+            <br>
+            <h4>Add Genre</h4>
+            <div class="col-md-4">
+	            <form name="newGenre">
+	            	Name: <input type="text" ng-model="genre.name" class="form-control">
+	            	<button class="btn btn-primary btn-small" type="submit" ng-click="addGenre(genre)"
+	                        style="margin-top: 1.45em;">Add</button>
+	            </form>
+            </div>
         </div>
     </div>
 </body>
