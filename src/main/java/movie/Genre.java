@@ -16,13 +16,20 @@ public class Genre {
     
     private String name;
     
-    public long getId() {
-        return id;
+    protected Genre() {}
+    
+    public Genre(String name){
+//        this.id = id;
+        this.name = name;
     }
     
-    public void setId(long id) {
-        this.id = id;
-    }
+//    public long getId() {
+//        return id;
+//    }
+//
+//    public void setId(long id) {
+//        this.id = id;
+//    }
     
     public String getName() {
         return name;

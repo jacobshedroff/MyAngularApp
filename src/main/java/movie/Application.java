@@ -26,8 +26,19 @@ public class Application{
         SpringApplication.run(Application.class, args);
     }
     
-//    @Autowired
-//    JdbcTemplate jdbcTemplate;
+    @Autowired
+    JdbcTemplate jdbcTemplate;
+    
+    @Bean
+    public CommandLineRunner generateGenres(GenreRepository repository) {
+        return (args) -> {
+            repository.save(new Genre("Drama"));
+            repository.save(new Genre("Action"));
+            repository.save(new Genre("Comedy"));
+            log.info("Genres Created");
+        };
+        
+    }
     
 //    @Override
 //    public void run(String... strings)throws Exception {

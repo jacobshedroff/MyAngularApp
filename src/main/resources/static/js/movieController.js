@@ -16,10 +16,8 @@ angular.module("root", [])
                 year : movie.year,
                 genreId : movie.genre.name
             });
-            //TODO - Figure out how to add the id into the movie object.
             $http.post('/movies', data)
                 .success(function(data, status, headers, config) {
-                    //TODO - Figure out how to clear the form after submit. (setPristine not working)
                     $scope.getAllMovies();
                     $scope.movie = {};
                     document.forms["newItem"].clear();
