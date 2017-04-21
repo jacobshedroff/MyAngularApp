@@ -21,8 +21,8 @@ public class Movie {
     
     protected Movie() {}
     
-    public Movie(long id, String title, int year, String genre_id) {
-        this.id = id;
+    public Movie(String title, int year, String genre_id) {
+//        this.id = id;
         this.title = title;
         this.year = year;
         this.genre_id = genre_id;

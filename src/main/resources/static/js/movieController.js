@@ -29,7 +29,7 @@ angular.module("root", [])
         };
         
         $scope.editItem = function(movie) {
-        	$scope.edit = true;
+        	// $scope.edit = true;
         	alert("You clicked!");
         };
         

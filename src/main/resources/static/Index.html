@@ -34,7 +34,8 @@
                 <td>{{item.title}}</td>
                 <td>{{item.year}}</td>
                 <td>{{item.genreId}}</td>
-                <td class="col-sm-1"><input type="button" value="edit" ng-click="edit = !edit; editItem(item);" class="btn btn-primary" ng-init="edit = false"></td>
+				<td class="col-sm-1"><button class="btn btn-primary btn-small" type="submit" ng-click="editItem(movie)"
+											 style="margin-top: 1.45em;">Edit</button></td>
             </tr>
         </table>
         <br>

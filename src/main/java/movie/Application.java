@@ -40,6 +40,16 @@ public class Application{
         
     }
     
+    @Bean
+    public CommandLineRunner generateMovies(MovieRepository repository) {
+        return (args) -> {
+            repository.save(new Movie("Deadpool", 2016, "Comedy"));
+            repository.save(new Movie("Arrival", 2016, "Drama"));
+            repository.save(new Movie("Rogue One: A Star Wars Story", 2016, "Action"));
+            log.info("Movies Generated");
+        };
+    }
+    
 //    @Override
 //    public void run(String... strings)throws Exception {
 //        log.info("Creating tables");
