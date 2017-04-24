@@ -34,7 +34,7 @@
                 <td>{{item.title}}</td>
                 <td>{{item.year}}</td>
                 <td>{{item.genreId}}</td>
-				<td class="col-sm-1"><button class="btn btn-primary btn-small" type="submit" ng-click="editItem(movie)"
+				<td class="col-sm-1"><button class="btn btn-primary btn-small" type="submit" ng-click="editItem2(item)"
 											 style="margin-top: 1.45em;">Edit</button></td>
             </tr>
         </table>
@@ -69,21 +69,21 @@
 	            <form name="editItem">
 	            	<h4 style="margin:1em;">Edit Movie:</h4>
 	                <div>
-	                    <input type="hidden" ng-model="movie.id">
+	                    <input type="hidden" ng-model="editItem.id">
 	                </div>
 	                <div class="col-md-3">
-	                    Title: <input type="text" ng-model="movie.title" class="form-control">
+	                    Title: <input type="text" ng-model="editItem.title" class="form-control">
 	                </div>
 	                <div class="col-md-3">
-	                    Year: <input type="text" ng-model="movie.year" class="form-control">
+	                    Year: <input type="text" ng-model="editItem.year" class="form-control">
 	                </div>
 	                <div class="col-md-3">
 	                    Genre:
-	                    <select ng-options="item.name for item in genreList" ng-model="movie.genre" class="form-control">
+	                    <select ng-options="item.name for item in genreList" ng-model="editItem.genreId" class="form-control">
 	                        <option value="">-- Choose Genre --</option>
 	                    </select>
 	                </div>
-	                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)"
+	                <button class="btn btn-primary btn-small" type="submit" ng-click="updateMovie(editItem)"
 	                        style="margin-top: 1.45em;">Update</button>
 	            </form>   
             </div>

@@ -7,6 +7,7 @@ angular.module("root", [])
         $scope.movies;
         $scope.genreList;
         $scope.edit = false;
+        $scope.editItem = {};
         
         $scope.addItem = function(movie) {
             movie.id = $scope.movies.length + 1;
@@ -20,29 +21,51 @@ angular.module("root", [])
                 .success(function(data, status, headers, config) {
                     $scope.getAllMovies();
                     $scope.movie = {};
-                    document.forms["newItem"].clear();
-                    $route.reload();
+                    // $route.reload();
                 })
                 .error(function(data, status, headers, config) {
                     alert("Could not post Movie : " + status);
                 });
         };
         
-        $scope.editItem = function(movie) {
-        	// $scope.edit = true;
-        	alert("You clicked!");
+        
+        $scope.editItem2 = function(movie){
+            alert("editing: " + movie.title);
+            $scope.id = $scope.getId(movie.title);
+            $scope.edit = true;
+            $scope.editItem.title = movie.title;
+            $scope.editItem.year = movie.year;
+            $scope.editItem.genreId = movie.genreId.name;
+        };
+        
+        $scope.getId = function(title){
+            for(var m = 1 in $scope.movies){
+                if($scope.movies[m].title == title){
+                    var index = parseInt(m) + 1;
+                    return index.toString();
+                }
+            }
         };
         
         $scope.updateMovie = function(movie) {
+            
             var data = JSON.stringify({
-                id: movie.id,
+                // id: $scope.id,
                 title: movie.title,
                 year: movie.year,
-                genreId : movie.genre.name
+                genreId : movie.genreId.name
             });
             //TODO - Get the Movie Id from the movie Object
-            $http.put('/movies/' + data.id, data)
+            $http.put('/movies/' + $scope.id, data)
+                .success(function(data, status, headers, config){
+                    $scope.getAllMovies();
+                    // $route.reload();
+                    $scope.editItem = {};
+                }).error(function(data, status, headers, config) {
+                alert("Could not update Movie : " + status);
+            });
             //TODO - Finish updateMovie method
+            $scope.edit = !$scope.edit;
         };
         
         $scope.getAllMovies = function () {
@@ -67,7 +90,7 @@ angular.module("root", [])
         			$scope.getGenres();
                     $scope.genre = {};
                     document.forms["newGenre"].clear();
-                    $route.reload();
+                    // $route.reload();
         		})
         		.error(function(data, status, headers, config){
         			alert("Could not add Genre.");
