@@ -15,8 +15,4 @@ public class MovieController {
     void index(HttpServletResponse response) throws IOException {
         response.sendRedirect("Index.html");
     }
-//
-//    public String index() {
-//        return "index.html";
-//    }
 }
