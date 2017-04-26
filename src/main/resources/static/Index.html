@@ -42,7 +42,7 @@
         <br>
         <div class="row">
         	<div ng-show="!edit">
-        		<h4>Add Movie</h4>
+        		<h4 style="margin-left: 1em;">Add Movie</h4>
         		<form name="newItem">
 	                <div>
 	                    <input type="hidden" ng-model="movie.id">
@@ -60,13 +60,13 @@
 	                    </select>
 	                </div>
 	                <button class="btn btn-primary btn-small" type="submit" ng-click="addItem(movie)"
-	                        style="margin-top: 1.45em;">Add</button>
+	                        style="margin-top: 1.45em; margin-left: 1em;">Add</button>
 	            </form>
         	</div>
             
             <div ng-show="edit">
 	            <form name="editItem">
-	            	<h4 style="margin:1em;">Edit Movie:</h4>
+	            	<h4 style="margin-left: 1em;">Edit Movie:</h4>
 	                <div>
 	                    <input type="hidden" ng-model="editItem.id">
 	                </div>
@@ -83,11 +83,11 @@
 	                    </select>
 	                </div>
 	                <button class="btn btn-primary btn-small" type="submit" ng-click="updateMovie(editItem)"
-	                        style="margin-top: 1.45em;">Update</button>
+	                        style="margin-top: 1.45em; margin-left: 1em;">Update</button>
 	            </form>   
             </div>
             <br>
-            <h4>Add Genre</h4>
+            <h4 style="margin-left: 1em;">Add Genre</h4>
             <div class="col-md-4">
 	            <form name="newGenre">
 	            	Name: <input type="text" ng-model="genre.name" class="form-control">
