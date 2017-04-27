@@ -67,6 +67,25 @@ angular.module("root", [])
             $scope.edit = !$scope.edit;
         };
         
+        $scope.deleteMovie = function(movie) {
+            // var id = $scope.getId(movie);
+            var data = JSON.stringify({
+                // id: $scope.id,
+                title: movie.title,
+                year: movie.year,
+                genreId : movie.genreId.name
+            });
+            $http.delete('/movies/' + $scope.id)
+                .success(function (data, status, headers, config) {
+                    $scope.getAllMovies();
+                    $scope.editItem = {};
+                })
+                .error(function (data, status, headers, config) {
+                    alert("Could not delete Movie : " + status);
+                })
+            $scope.edit = !$scope.edit;
+        }
+        
         $scope.getAllMovies = function () {
             $http.get('/movies')
                 .success(function (data, status, headers, config) {
