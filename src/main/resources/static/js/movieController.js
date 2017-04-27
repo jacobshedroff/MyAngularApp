@@ -21,7 +21,6 @@ angular.module("root", [])
                 .success(function(data, status, headers, config) {
                     $scope.getAllMovies();
                     $scope.movie = {};
-                    // $route.reload();
                 })
                 .error(function(data, status, headers, config) {
                     alert("Could not post Movie : " + status);
@@ -49,28 +48,22 @@ angular.module("root", [])
         $scope.updateMovie = function(movie) {
             
             var data = JSON.stringify({
-                // id: $scope.id,
                 title: movie.title,
                 year: movie.year,
                 genreId : movie.genreId.name
             });
-            //TODO - Get the Movie Id from the movie Object
             $http.put('/movies/' + $scope.id, data)
                 .success(function(data, status, headers, config){
                     $scope.getAllMovies();
-                    // $route.reload();
                     $scope.editItem = {};
                 }).error(function(data, status, headers, config) {
                 alert("Could not update Movie : " + status);
             });
-            //TODO - Finish updateMovie method
             $scope.edit = !$scope.edit;
         };
         
         $scope.deleteMovie = function(movie) {
-            // var id = $scope.getId(movie);
             var data = JSON.stringify({
-                // id: $scope.id,
                 title: movie.title,
                 year: movie.year,
                 genreId : movie.genreId.name
@@ -108,7 +101,6 @@ angular.module("root", [])
         			$scope.getGenres();
                     $scope.genre = {};
                     document.forms["newGenre"].clear();
-                    // $route.reload();
         		})
         		.error(function(data, status, headers, config){
         			alert("Could not add Genre.");
